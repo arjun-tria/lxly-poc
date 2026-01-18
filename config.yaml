@@ -4,7 +4,7 @@ networks:
 - id: 1
   rpc_config:
     url: https://mainnet.infura.io/v3/ef0e2539bc92442aa9e3c9e95659d959
-  start_block: 0
+  start_block: 23685757
   contracts:
   - name: TransparentUpgradeableProxy
     address:
