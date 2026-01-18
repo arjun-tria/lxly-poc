@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: tria-vaults-indexer
+networks:
+- id: 1
+  rpc_config:
+    url: https://mainnet.infura.io/v3/ef0e2539bc92442aa9e3c9e95659d959
+  start_block: 0
+  contracts:
+  - name: TransparentUpgradeableProxy
+    address:
+    - 0x3cC0D33B1AEac3d23eA89214b3AC5B4607032167
+    - 0x74aD2F789Ed583DBd141bbdafC673fE1F033718b
+    handler: src/EventHandlers.ts
+    events:
+    - event: ContractConfigured()
+    - event: Deposit(address assetIn, uint256 amountIn, uint256 shares, address indexed senderAddr, address indexed receiverAddr)
+      field_selection:
+        transaction_fields:
+          - hash
+    - event: DepositWithdrawalStatusChanged(bool bDepositsPaused, bool bWithdrawalsPaused)
+    - event: FeesCollected()
+    - event: ManagementFeeCharged(uint256 managementFeeAmount)
+    - event: ManagementFeeUpdated(uint256 newManagementFeePercent)
+    - event: Withdraw(address indexed sender, address indexed receiver, address indexed owner, uint256 assets, uint256 shares)
+      field_selection:
+        transaction_fields:
+          - hash
+    - event: WithdrawalProcessed(uint256 assetsAmount, address indexed receiverAddr)
+      field_selection:
+        transaction_fields:
+          - hash
+    - event: WithdrawalRequested(uint256 shares, address indexed holderAddr, address indexed receiverAddr)
+      field_selection:
+        transaction_fields:
+          - hash
+unordered_multichain_mode: true
+preload_handlers: true

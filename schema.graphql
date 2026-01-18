@@ -1,0 +1,115 @@
+type TransparentUpgradeableProxy_ContractConfigured {
+  id: ID!
+}
+
+type TransparentUpgradeableProxy_Deposit {
+  id: ID!
+  assetIn: String!
+  amountIn: BigInt!
+  shares: BigInt!
+  senderAddr: String!
+  receiverAddr: String!
+}
+
+type TransparentUpgradeableProxy_DepositWithdrawalStatusChanged {
+  id: ID!
+  bDepositsPaused: Boolean!
+  bWithdrawalsPaused: Boolean!
+}
+
+type TransparentUpgradeableProxy_FeesCollected {
+  id: ID!
+}
+
+type TransparentUpgradeableProxy_ManagementFeeCharged {
+  id: ID!
+  managementFeeAmount: BigInt!
+}
+
+type TransparentUpgradeableProxy_ManagementFeeUpdated {
+  id: ID!
+  newManagementFeePercent: BigInt!
+}
+
+type TransparentUpgradeableProxy_Withdraw {
+  id: ID!
+  sender: String!
+  receiver: String!
+  owner: String!
+  assets: BigInt!
+  shares: BigInt!
+}
+
+type TransparentUpgradeableProxy_WithdrawalProcessed {
+  id: ID!
+  assetsAmount: BigInt!
+  receiverAddr: String!
+}
+
+type TransparentUpgradeableProxy_WithdrawalRequested {
+  id: ID!
+  shares: BigInt!
+  holderAddr: String!
+  receiverAddr: String!
+}
+
+type Vault {
+  id: ID!
+  address: String!
+  chainId: BigInt!
+  assetAddress: String!
+  tvl: BigInt!
+  tvlUSD: String!
+  totalDeposits: BigInt!
+  totalDepositsUSD: String!
+  totalWithdrawals: BigInt!
+  totalWithdrawalsUSD: String!
+  totalManagementFees: BigInt!
+  totalManagementFeesUSD: String!
+  tokenDecimals: BigInt!
+  tokenPriceUSD: String!
+  tokenSymbol: String
+  isDepositsPaused: Boolean!
+  isWithdrawalsPaused: Boolean!
+  createdAt: BigInt!
+  updatedAt: BigInt!
+}
+
+type User {
+  id: ID!
+  address: String!
+  totalDepositsAcrossAllVaults: BigInt!
+  totalWithdrawalsAcrossAllVaults: BigInt!
+  totalPnL: BigInt!
+  totalRewardsDistributed: BigInt!
+  createdAt: BigInt!
+  updatedAt: BigInt!
+}
+
+type UserVaultPosition {
+  id: ID!
+  user_id: String!
+  vault_id: String!
+  totalDeposits: BigInt!
+  totalWithdrawals: BigInt!
+  currentShares: BigInt!
+  pnl: BigInt!
+  createdAt: BigInt!
+  updatedAt: BigInt!
+}
+
+type UserVaultHistory {
+  id: ID!
+  user_id: String!
+  vault_id: String!
+  transactionType: String!
+  amount: BigInt!
+  amountUSD: String!
+  shares: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: String!
+  eventIndex: BigInt!
+  chainId: BigInt!
+  createdAt: BigInt!
+}
